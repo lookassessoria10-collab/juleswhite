@@ -12,7 +12,7 @@ Apresentação interativa com as 27 lâminas originais, organizada em 6 módulos
 ## Rodar localmente
 
 ```bash
-node server.js
+node servidor-local.js
 ```
 
 Abra http://localhost:4173 (no Windows, basta dar dois cliques em `Abrir apresentação.bat`).

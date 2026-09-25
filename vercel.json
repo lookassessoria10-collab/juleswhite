@@ -1,0 +1,7 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "builds": [{ "src": "**", "use": "@vercel/static" }],
+  "headers": [
+    { "source": "/slides/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800, immutable" }] }
+  ]
+}

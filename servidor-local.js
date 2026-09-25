@@ -1,4 +1,4 @@
-// Servidor local sem dependências: node server.js  (porta opcional: PORT=8080)
+// Servidor local sem dependências: node servidor-local.js  (porta opcional: PORT=8080)
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
@@ -15,7 +15,7 @@ http.createServer((req, res) => {
   let p = decodeURIComponent(new URL(req.url, "http://x").pathname);
   if (p === "/") p = "/index.html";
   const file = path.join(ROOT, path.normalize(p));
-  if (!file.startsWith(ROOT) || path.basename(file) === "server.js") { res.writeHead(403).end(); return; }
+  if (!file.startsWith(ROOT) || path.basename(file) === "servidor-local.js") { res.writeHead(403).end(); return; }
   fs.stat(file, (err, st) => {
     if (err || !st.isFile()) { res.writeHead(404, { "Content-Type": "text/plain" }).end("Não encontrado"); return; }
     const ext = path.extname(file);
