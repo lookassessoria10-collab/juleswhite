@@ -4,7 +4,8 @@ const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 const TOTAL = SLIDES.length - 1;
 const pad = (n) => String(n).padStart(2, "0");
-const src = (n, w) => `slides/${pad(n)}-${w}.webp`;
+// "v" muda quando uma lâmina é substituída, para não ficar presa no cache
+const src = (n, w) => `slides/${pad(n)}-${w}.webp${SLIDES[n]?.v ? "?v=" + SLIDES[n].v : ""}`;
 const srcset = (n) => `${src(n, 1400)} 1400w, ${src(n, 2560)} 2560w`;
 const SIZES = "(max-width: 900px) and (orientation: portrait) 100vw, 85vw";
 const moduleOf = (n) => MODULES.find((m) => m.slides.includes(n));
@@ -146,6 +147,10 @@ function render(n) {
   state.n = n;
   state.rendered = true;
   const s = SLIDES[n];
+  const ar = s.ar || 842 / 595;
+  $("#frame").style.setProperty("--ar", ar);
+  img.width = 1400;
+  img.height = Math.round(1400 / ar);
   img.srcset = srcset(n);
   img.src = src(n, 1400);
   img.alt = `Lâmina ${n}: ${s.alt}`;

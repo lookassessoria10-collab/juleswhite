@@ -1,4 +1,4 @@
-# Técnicas Laboratoriais de Reprodução Humana — Jules White
+# Técnicas Laboratoriais de Reprodução Humana — Dra. Camila Poncio
 
 Apresentação interativa com as 27 lâminas originais, organizada em 6 módulos.
 

@@ -47,8 +47,10 @@ export const SLIDES = [
   {
     title: "Técnicas Laboratoriais de Reprodução Humana",
     kind: "capa",
-    text: `<p class="lead">Ciência, precisão e acolhimento no seu processo de fertilização.</p><p>Jules White — Reprodução Assistida e Fertilidade.</p>`,
-    alt: "Capa: Técnicas Laboratoriais de Reprodução Humana, Jules White.",
+    v: 2,
+    ar: 2730 / 1536, // capa em 16:9 (as demais lâminas são A4)
+    text: `<p class="lead">Ciência, precisão e acolhimento no seu processo de fertilização.</p><p>Dra. Camila Poncio — Reprodução Assistida e Fertilidade.</p>`,
+    alt: "Capa: Técnicas Laboratoriais de Reprodução Humana, Dra. Camila Poncio.",
   },
   journey(1),
   {
@@ -233,9 +235,10 @@ export const SLIDES = [
   },
   {
     title: "Estamos Prontos para Caminhar com Você",
+    v: 2,
     kind: "capa",
-    text: `<p class="lead">Ciência de ponta com o carinho que a sua história merece.</p><p>Jules White — Reprodução Assistida e Fertilidade.</p>`,
-    alt: "Casal sorrindo segurando um teste de gravidez, com o logotipo Jules White.",
+    text: `<p class="lead">Ciência de ponta com o carinho que a sua história merece.</p><p>Dra. Camila Poncio — Medicina Reprodutiva.</p>`,
+    alt: "Casal sorrindo segurando um teste de gravidez, com o logotipo da Dra. Camila Poncio.",
   },
 ];
 
