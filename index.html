@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Técnicas Laboratoriais de Reprodução Humana · Jules White</title>
+  <meta name="description" content="Apresentação interativa: a jornada da reprodução assistida em 6 módulos.">
+  <meta name="theme-color" content="#6b3528">
+  <meta property="og:title" content="Técnicas Laboratoriais de Reprodução Humana">
+  <meta property="og:image" content="og.jpg">
+  <link rel="icon" href="icon.png">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Montserrat:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="slides/01-1400.webp" fetchpriority="high">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============ INÍCIO ============ -->
+<section id="home" class="screen" aria-labelledby="home-title">
+  <div class="home-bg" aria-hidden="true"></div>
+  <div class="home-inner">
+    <img class="brand" src="icon.png" alt="" width="64" height="64">
+    <p class="eyebrow">Jules White · Reprodução Assistida</p>
+    <h1 id="home-title" class="display">Técnicas Laboratoriais<br>de Reprodução Humana</h1>
+    <p class="home-sub">Ciência, precisão e acolhimento no seu processo de fertilização. Escolha como quer explorar:</p>
+
+    <div class="home-actions">
+      <button class="big-card primary" data-go="guia">
+        <span class="bc-icon" aria-hidden="true">✦</span>
+        <span><b>O que você quer saber?</b><small>Responda 2 perguntas e receba uma trilha feita para você</small></span>
+      </button>
+      <button class="big-card" data-go="slide-1">
+        <span class="bc-icon" aria-hidden="true">▶</span>
+        <span><b>Ver apresentação completa</b><small>27 lâminas · 6 módulos · ~10 min</small></span>
+      </button>
+      <button class="big-card" data-open="sumario">
+        <span class="bc-icon" aria-hidden="true">☰</span>
+        <span><b>Sumário</b><small>Pule direto para um módulo ou busque um tema</small></span>
+      </button>
+      <button class="big-card" data-go="quiz">
+        <span class="bc-icon" aria-hidden="true">?</span>
+        <span><b>Teste seus conhecimentos</b><small>9 perguntas rápidas sobre o conteúdo</small></span>
+      </button>
+    </div>
+
+    <div class="quick">
+      <p class="quick-label">Perguntas frequentes</p>
+      <div class="chips" id="home-chips"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GUIA / QUESTIONÁRIO ============ -->
+<section id="guia" class="screen" hidden aria-labelledby="guia-title">
+  <header class="screen-bar">
+    <button class="icon-btn" data-go="home" aria-label="Voltar ao início">←</button>
+    <div class="steps" aria-hidden="true"><i data-step="1"></i><i data-step="2"></i><i data-step="3"></i></div>
+    <span class="bar-spacer"></span>
+  </header>
+  <div class="guia-body">
+    <div class="guia-step" data-step="1">
+      <p class="eyebrow">Passo 1 de 2</p>
+      <h2 id="guia-title" class="display">Em que momento da jornada você está?</h2>
+      <div class="moments" id="moments"></div>
+      <button class="link-btn" data-go="slide-1">Prefiro ver tudo, do início →</button>
+    </div>
+    <div class="guia-step" data-step="2" hidden>
+      <p class="eyebrow">Passo 2 de 2</p>
+      <h2 class="display">O que você mais quer entender?</h2>
+      <p class="muted">Já deixamos algumas marcadas para o seu momento. Ajuste como quiser.</p>
+      <div class="chips selectable" id="topic-chips" role="group" aria-label="Temas"></div>
+      <div class="guia-nav">
+        <button class="btn ghost" data-guia-back>Voltar</button>
+        <button class="btn primary" id="build-trail">Montar minha trilha</button>
+      </div>
+    </div>
+    <div class="guia-step" data-step="3" hidden>
+      <p class="eyebrow">Sua trilha personalizada</p>
+      <h2 class="display" id="trail-title">Preparamos um caminho para você</h2>
+      <p class="muted" id="trail-meta"></p>
+      <ol class="trail-list" id="trail-list"></ol>
+      <div class="guia-nav">
+        <button class="btn ghost" data-guia-back>Ajustar temas</button>
+        <button class="btn primary" id="start-trail">Começar trilha ▶</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APRESENTAÇÃO ============ -->
+<section id="viewer" class="screen" hidden aria-label="Apresentação">
+  <header class="v-top">
+    <button class="icon-btn" data-go="home" aria-label="Início"><img src="icon.png" alt="" width="28" height="28"></button>
+    <div class="v-title">
+      <span class="v-mod" id="v-mod"></span>
+      <span class="v-name" id="v-name"></span>
+    </div>
+    <div class="v-tools">
+      <button class="icon-btn" data-open="sumario" aria-label="Sumário (S)" title="Sumário (S)">☰</button>
+      <button class="icon-btn desk-only" id="btn-text" aria-label="Texto do slide (T)" aria-pressed="false" title="Texto do slide (T)">¶</button>
+      <button class="icon-btn" id="btn-zoom" aria-label="Ampliar lâmina (Z)" title="Ampliar (Z)">⤢</button>
+      <button class="icon-btn" id="btn-fs" aria-label="Tela cheia (F)" title="Tela cheia (F)">⛶</button>
+    </div>
+  </header>
+
+  <div class="trail-banner" id="trail-banner" hidden>
+    <span>✦ Sua trilha · <b id="trail-pos"></b></span>
+    <button class="link-btn" id="exit-trail">Ver apresentação completa</button>
+  </div>
+
+  <div class="v-main">
+    <div class="stage" id="stage">
+      <button class="nav-arrow prev" id="prev" aria-label="Slide anterior">‹</button>
+      <figure class="slide-frame" id="frame">
+        <img id="slide-img" alt="" width="1400" height="989" fetchpriority="high" draggable="false">
+        <div class="hotspots" id="hotspots"></div>
+        <div class="tap-hint" id="tap-hint" hidden>Toque em uma etapa para ir direto a ela</div>
+      </figure>
+      <button class="nav-arrow next" id="next" aria-label="Próximo slide">›</button>
+    </div>
+
+    <aside class="read-panel" id="read-panel" aria-label="Texto do slide">
+      <div class="rp-inner">
+        <p class="eyebrow" id="rp-mod"></p>
+        <h2 class="rp-title" id="rp-title"></h2>
+        <div class="rp-text" id="rp-text"></div>
+        <div class="rp-related" id="rp-related"></div>
+      </div>
+    </aside>
+  </div>
+
+  <footer class="v-bottom">
+    <button class="btn-nav" id="prev-b" aria-label="Anterior">‹ <span>Anterior</span></button>
+    <div class="progress" id="progress" role="navigation" aria-label="Módulos"></div>
+    <span class="counter" id="counter" aria-live="polite"></span>
+    <button class="btn-nav next" id="next-b" aria-label="Próximo"><span>Próximo</span> ›</button>
+  </footer>
+
+  <div class="rotate-tip" id="rotate-tip" hidden>
+    <span aria-hidden="true">⟳</span> Gire o celular para ver a lâmina maior
+    <button class="icon-btn" id="rotate-close" aria-label="Fechar dica">×</button>
+  </div>
+</section>
+
+<!-- ============ QUIZ ============ -->
+<section id="quiz" class="screen" hidden aria-labelledby="quiz-title">
+  <header class="screen-bar">
+    <button class="icon-btn" data-go="home" aria-label="Voltar ao início">←</button>
+    <div class="quiz-progress"><i id="quiz-bar"></i></div>
+    <span class="counter" id="quiz-count"></span>
+  </header>
+  <div class="quiz-body" id="quiz-body"></div>
+</section>
+
+<!-- ============ SUMÁRIO ============ -->
+<dialog id="sumario" class="drawer" closedby="any" aria-labelledby="sum-title">
+  <div class="drawer-head">
+    <h2 id="sum-title" class="display">Sumário</h2>
+    <button class="icon-btn" data-close aria-label="Fechar sumário">×</button>
+  </div>
+  <label class="search">
+    <span aria-hidden="true">⌕</span>
+    <input type="search" id="sum-search" placeholder="Buscar tema (ex.: ICSI, congelamento…)" autocomplete="off">
+  </label>
+  <div class="drawer-scroll">
+    <div id="sum-results" hidden></div>
+    <div id="sum-modules"></div>
+    <div class="drawer-extra">
+      <button class="btn primary block" data-go="guia">✦ Montar minha trilha</button>
+      <button class="btn ghost block" data-go="quiz">? Teste seus conhecimentos</button>
+    </div>
+  </div>
+</dialog>
+
+<!-- ============ ZOOM ============ -->
+<dialog id="zoom" class="zoom" aria-label="Lâmina ampliada">
+  <div class="zoom-area" id="zoom-area">
+    <img id="zoom-img" alt="" draggable="false">
+  </div>
+  <div class="zoom-tools">
+    <span class="zoom-hint">Pinça ou roda do mouse para ampliar · arraste para mover</span>
+    <button class="icon-btn" id="zoom-out" aria-label="Diminuir">−</button>
+    <button class="icon-btn" id="zoom-in" aria-label="Aumentar">+</button>
+    <button class="icon-btn" data-close aria-label="Fechar">×</button>
+  </div>
+</dialog>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
